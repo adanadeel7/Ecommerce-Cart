@@ -10,6 +10,18 @@ function App() {
   { id: 6, name: "USB Cable", price: 9, image: "🔌" }
 ]
 
+const [cart,setCart] = useState([])
+
+const handleadd = (value) => {
+  const product = cart.find(item => item.id === value.id); 
+  if (product) { 
+    const updatedcart = cart.map(item => item.id === value.id 
+      ? {...item , quantity : item.quantity + 1} : item)
+    setCart(updatedcart);
+  } else { 
+    setCart([...cart, {...value,quantity:1}])
+  }
+} 
 
   return (
     <>
@@ -39,18 +51,21 @@ function App() {
             <div className='w-1/6 text-center'>Price</div>
             <div className='w-1/6 text-center'>Quantity</div>
             <div className='w-1/6 text-right'>Total</div>
-       
-        </div>
+            
 
-        <div className='bg-gray-500 w-80 flex-row-reverse'>
-            <div>
-              <div>
+
+        </div>
+        
+        
+      </div>
+       
+       
+       <div className='flex justify-end' >
+            <div className='bg-gray-500 p-6'>
                 Subtotal
               </div>
             </div>
-        </div>
         
-      </div>
 
     
       
