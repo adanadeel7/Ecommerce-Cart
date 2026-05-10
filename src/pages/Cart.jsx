@@ -10,24 +10,9 @@ function Cart() {
   { id: 6, name: "USB Cable", price: 9, image: "🔌" }
 ]
 
-const [cart,setCart] = useState([])
 
 
-const handleadd = (value) => {
-  const product = cart.find(item => item.id === value.id); 
-  if (product) { 
-    const updatedcart = cart.map(item => item.id === value.id 
-      ? {...item , quantity : item.quantity + 1} : item)
-    setCart(updatedcart);
-  } else { 
-    setCart([...cart, {...value,quantity:1}])
-  }
-} 
 
-const handleremove = (value) => { 
-  const removed = cart.filter(items => items.id !== value.id) 
-  setCart(removed)
-}
 
   return (
     <>
