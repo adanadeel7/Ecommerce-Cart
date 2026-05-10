@@ -23,6 +23,11 @@ const handleadd = (value) => {
   }
 } 
 
+const handleremove = (value) => { 
+  const removed = cart.filter(items => items.id !== value.id) 
+  setCart(removed)
+}
+
   return (
     <>
       <div className='flex justify-between items-center px-10 py-6 bg-gray-900 text-white'> 
