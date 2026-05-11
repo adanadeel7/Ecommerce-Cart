@@ -14,18 +14,37 @@ const handleadd = (value) => {
   } else { 
     setCart([...cart, {...value,quantity:1}])
   }
+
+  console.log(cart)
 } 
 
 const handleremove = (value) => { 
   const removed = cart.filter(items => items.id !== value.id) 
   setCart(removed)
 }
+
+const handlequantitylower = (value) => { 
+  
+  const product = cart.find(item => item.id === value.id); 
+  if (product) { 
+    const updatedcart = cart.map(item => item.id === value.id 
+      ? {...item , quantity : item.quantity - 1} : item)
+    setCart(updatedcart);
+  } else { 
+    handleremove(item)
+  }
+}
+
+
 return (
     <CartContext.Provider value={{handleadd,handleremove,cart,setCart}}>
         {children}
     </CartContext.Provider>
 
 )
+
+
+
 }
 
 export function useCart() { 

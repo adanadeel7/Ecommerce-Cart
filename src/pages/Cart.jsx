@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { useCart } from '../context/CartContext'
 
 function Cart() {
-
+  const {cart,handlequantitylower,handleadd} = useCart()
 
 
 
@@ -9,7 +10,7 @@ function Cart() {
     <>
       
 
-      <div className='flex justify-center text-4xl font-medium pt-10'>
+      <div className='flex justify-center text-4xl font-medium pt-10 '>
         <h1>Your Cart</h1>
       </div>
     <div className='flex-col'>
@@ -28,7 +29,7 @@ function Cart() {
         {cart.map(item=> (
           <div key={item.id} className='flex justify-between items-center py-4 border-b'>
             <div className='w-1/2 flex items-center gap-3'>
-              <span> {item.image}</span>
+              <img src={item.image} alt={item.name}/> 
               <span> {item.name}</span>
             </div>
 
@@ -37,9 +38,9 @@ function Cart() {
             </div>
 
             <div className='w-1/6 text-center flex items-center justify-center gap-2'> 
-              <button className='w-8 h-8 rounded-full bg-gray-200'>-</button>
+              <button className='w-8 h-8 rounded-full bg-gray-200' onClick={()=> handlequantitylower(item)}>-</button>
               <span>{item.quantity}</span>
-              <button className='w-8 h-8 rounded-full bg-gray-200'>+</button>
+              <button className='w-8 h-8 rounded-full bg-gray-200' onClick={() => handleadd(item)}>+</button>
             </div>
              <div className='w-1/6 text-right'>${item.price * item.quantity}</div>
           </div>
