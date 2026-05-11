@@ -21,11 +21,19 @@ const handleremove = (value) => {
   setCart(removed)
 }
 return (
-    <CartContext.Provider value={{handleadd,handleremove,cart}}>
+    <CartContext.Provider value={{handleadd,handleremove,cart,setCart}}>
         {children}
     </CartContext.Provider>
 
 )
 }
 
+export function useCart() { 
+  const context = useContext(CartContext)
+  if (!context) { 
+    throw new Error("useCart must be used within CartProvider")
+    
+  }
+  return context
+}
 

@@ -1,15 +1,6 @@
 import { useState } from 'react'
 
 function Cart() {
-  const products = [
-  { id: 1, name: "Laptop", price: 999, image: "https://www.pexels.com/photo/person-using-a-macbook-4065623/" },
-  { id: 2, name: "Mouse", price: 29, image: "🖱️" },
-  { id: 3, name: "Keyboard", price: 79, image: "⌨️" },
-  { id: 4, name: "Monitor", price: 299, image: "🖥️" },
-  { id: 5, name: "Headphones", price: 149, image: "🎧" },
-  { id: 6, name: "USB Cable", price: 9, image: "🔌" }
-]
-
 
 
 
