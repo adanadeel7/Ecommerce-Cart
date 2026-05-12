@@ -1,12 +1,21 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const CartContext = createContext()
 
 export function CartProvider ({children}) { 
     const [cart,setCart] = useState([])
 
+
+useEffect(() => { 
+  const saved = localStorage.getItem('cart')
+  if(saved) { 
+    setCart(JSON.parse(saved))
+  }
+},{})
+
 const handleadd = (value) => {
   const product = cart.find(item => item.id === value.id); 
+
   if (product) { 
     const updatedcart = cart.map(item => item.id === value.id 
       ? {...item , quantity : item.quantity + 1} : item)
@@ -14,8 +23,6 @@ const handleadd = (value) => {
   } else { 
     setCart([...cart, {...value,quantity:1}])
   }
-
-  console.log(cart)
 } 
 
 const handleremove = (value) => { 
@@ -23,21 +30,26 @@ const handleremove = (value) => {
   setCart(removed)
 }
 
-const handlequantitylower = (value) => { 
+function handlequantitylower(value) { 
   
   const product = cart.find(item => item.id === value.id); 
-  if (product) { 
+  if (value.quantity === 1) { 
+    handleremove(value)
+  } else { 
     const updatedcart = cart.map(item => item.id === value.id 
       ? {...item , quantity : item.quantity - 1} : item)
     setCart(updatedcart);
-  } else { 
-    handleremove(item)
+    
   }
 }
 
+useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cart))
+}, [cart])
+
 
 return (
-    <CartContext.Provider value={{handleadd,handleremove,cart,setCart}}>
+    <CartContext.Provider value={{handleadd,handleremove,cart,setCart,handlequantitylower}}>
         {children}
     </CartContext.Provider>
 
