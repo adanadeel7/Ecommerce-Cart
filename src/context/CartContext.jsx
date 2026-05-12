@@ -6,12 +6,15 @@ export function CartProvider ({children}) {
     const [cart,setCart] = useState([])
 
 
+
 useEffect(() => { 
   const saved = localStorage.getItem('cart')
   if(saved) { 
     setCart(JSON.parse(saved))
   }
 },{})
+
+
 
 const handleadd = (value) => {
   const product = cart.find(item => item.id === value.id); 
@@ -43,13 +46,18 @@ function handlequantitylower(value) {
   }
 }
 
+const handleitems = () => { 
+  return cart.reduce((sum, item) => sum + item.quantity, 0)
+
+}
+
 useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cart))
 }, [cart])
 
 
 return (
-    <CartContext.Provider value={{handleadd,handleremove,cart,setCart,handlequantitylower}}>
+    <CartContext.Provider value={{handleadd,handleremove,cart,setCart,handlequantitylower,handleitems}}>
         {children}
     </CartContext.Provider>
 
