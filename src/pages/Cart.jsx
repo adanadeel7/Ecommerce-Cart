@@ -4,7 +4,9 @@ import { useCart } from '../context/CartContext'
 function Cart() {
   const {cart,handlequantitylower,handleadd} = useCart()
 
-
+  if (cart.length === 0) {
+    return <div className="text-center">🛒 Your Cart is Empty</div>
+  }
 
   return (
     <>
@@ -13,7 +15,9 @@ function Cart() {
       <div className='flex justify-center text-4xl font-medium pt-10 '>
         <h1>Your Cart</h1>
       </div>
-    <div className='flex-col'>
+      
+  
+  <div className='flex-col'>
        <div className='flex justify-between px-10 py-6 text-gray-600 border-b'> 
     
           
@@ -25,6 +29,8 @@ function Cart() {
 
 
         </div>
+
+        
 
         {cart.map(item=> (
           <div key={item.id} className='flex justify-between items-center py-4 border-b'>
@@ -45,6 +51,8 @@ function Cart() {
              <div className='w-1/6 text-right'>${item.price * item.quantity}</div>
           </div>
         ))}
+
+        
         
         
       </div>
