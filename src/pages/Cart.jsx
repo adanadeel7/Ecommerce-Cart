@@ -3,7 +3,13 @@ import { useCart } from '../context/CartContext'
 
 function Cart() {
   const {cart,handlequantitylower,handleadd} = useCart()
+  
+  const Calsubtotal = (value) => { 
+    const Subtotal = value.reduce((total,items) => total + items.quantity * items.price,0)
+    return Subtotal
 
+  }
+  
   if (cart.length === 0) {
     return <div className="text-center">🛒 Your Cart is Empty</div>
   }
@@ -50,6 +56,7 @@ function Cart() {
             </div>
              <div className='w-1/6 text-right'>${item.price * item.quantity}</div>
           </div>
+
         ))}
 
         
@@ -58,11 +65,25 @@ function Cart() {
       </div>
        
        
-       <div className='flex justify-end' >
-            <div className='bg-gray-500 p-6'>
-                Subtotal
+       <div className='flex justify-end mt-8'>
+          <div className='w-80 rounded-lg bg-gray-300 p-6'>
+          
+              <div className='font-bold mb-4'>
+                Order Summary
               </div>
-            </div>
+
+              <div>
+                <div>
+                  <span>
+                    Subtotal: 
+                  </span>
+                  <span>
+                    ${Calsubtotal(cart)}
+                  </span>
+                </div>
+              </div>
+          </div>
+       </div>
         
 
     
