@@ -15,7 +15,6 @@ useEffect(() => {
 },{})
 
 
-
 const handleadd = (value) => {
   const product = cart.find(item => item.id === value.id); 
 
@@ -50,6 +49,8 @@ const handleitems = () => {
   return cart.reduce((sum, item) => sum + item.quantity, 0)
 
 }
+
+
 
 useEffect(() => {
   localStorage.setItem("cart", JSON.stringify(cart))
