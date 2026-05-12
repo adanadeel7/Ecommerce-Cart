@@ -9,6 +9,24 @@ function Cart() {
     return Subtotal
 
   }
+
+  const Calshipping = (value) => { 
+    let shipping = 0 
+    const Subtotal = Calsubtotal(value)
+    if ( Subtotal >= 50) { 
+       shipping = 0; 
+      
+    } else { 
+      shipping = 10;
+    }
+    return shipping
+  }
+
+  const CalTotal = (value) => { 
+    const shipping = Calshipping(value)
+    const subtotal = Calsubtotal(value)
+    return shipping + subtotal
+  }
   
   if (cart.length === 0) {
     return <div className="text-center">🛒 Your Cart is Empty</div>
@@ -74,12 +92,21 @@ function Cart() {
 
               <div>
                 <div>
-                  <span>
-                    Subtotal: 
-                  </span>
-                  <span>
-                    ${Calsubtotal(cart)}
-                  </span>
+                  <span> Subtotal: </span>
+                  <span>${Calsubtotal(cart)}</span>
+                </div>
+
+                <div>
+                  <span> Shipping: </span>
+                  <span>${Calshipping(cart)}</span>
+                </div>
+
+                <div>
+                  <span> Total: </span>
+                  <span>${CalTotal(cart)}</span>
+                </div>
+                <div className='justify-center flex mt-2 bg-green-400 px-5 py-5 rounded-full'>
+                 <button >Checkout</button>
                 </div>
               </div>
           </div>
