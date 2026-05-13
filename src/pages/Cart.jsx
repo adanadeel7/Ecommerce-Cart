@@ -105,7 +105,7 @@ function Cart() {
                   <span> Total: </span>
                   <span>${CalTotal(cart)}</span>
                 </div>
-                <div className='justify-center flex mt-2 bg-green-400 px-5 py-5 rounded-full'>
+                <div className='justify-center flex mt-2 bg-green-400 px-5 py-5 rounded-full hover:bg-green-600 transition'>
                  <button >Checkout</button>
                 </div>
               </div>

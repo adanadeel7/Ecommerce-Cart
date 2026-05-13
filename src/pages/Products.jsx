@@ -38,8 +38,8 @@ function Products() {
               </span>
             </div> 
 
-            <div className='text-center bg-orange-400 text-white px-5 py-5 rounded-full cursor-pointer'>
-              <button onClick={() => handleadd(items)}> Add To Cart</button>
+            <div className='flex justify-center'>
+              <button onClick={() => handleadd(items)} className='bg-orange-400 text-white px-20 py-5 rounded-full cursor-pointer' > Add To Cart</button>
             </div>
   
           </div>
