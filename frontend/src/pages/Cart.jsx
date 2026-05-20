@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
+import Checkout from './Checkout'
+import { Link } from 'react-router'
+
 
 function Cart() {
   const {cart,handlequantitylower,handleadd} = useCart()
@@ -27,10 +30,13 @@ function Cart() {
     const subtotal = Calsubtotal(value)
     return shipping + subtotal
   }
+
+
   
   if (cart.length === 0) {
     return <div className="text-center">🛒 Your Cart is Empty</div>
   }
+
 
   return (
     <>
@@ -106,7 +112,7 @@ function Cart() {
                   <span>${CalTotal(cart)}</span>
                 </div>
                 <div className='justify-center flex mt-2 bg-green-400 px-5 py-5 rounded-full hover:bg-green-600 transition'>
-                 <button >Checkout</button>
+                 <Link to={'/checkout'} >Checkout </Link>
                 </div>
               </div>
           </div>

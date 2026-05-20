@@ -21,6 +21,8 @@ createRoot(document.getElementById('root')).render(
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login/>} />
+            <Route path='/checkout'/>
+    
 
       </Routes>
       </CartProvider>
